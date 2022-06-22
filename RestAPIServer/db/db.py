@@ -1,5 +1,5 @@
-from db.connection import dbConnection as connDb
-from db.document import accessDocumentDb as docDb
+from db.connection import dbConnectionDAO as connDb
+from db.document import accessDocumentDAO as docDb
 
 
 # 문서의 가장 최종버전 반환
