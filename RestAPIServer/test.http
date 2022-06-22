@@ -23,3 +23,11 @@ content-type: application/json
 {
   "title": "Hello World"
 }
+
+###
+POST http://localhost:5000/checkEmail
+content-type: application/json
+
+{
+  "email": "4kang0624@naver.com"
+}

@@ -1,5 +1,8 @@
 from db.connection import dbConnectionDAO as connDb
 from db.document import accessDocumentDAO as docDb
+from db.user import registerDAO as regDb
+from db.user import loginDAO as loginDb
+import jwt
 
 
 # 문서의 가장 최종버전 반환
@@ -47,3 +50,72 @@ def insertDocument(data):
     else:
         docDb.insertDocument(db, data)
         return {'result': 'success'}
+
+
+# 아이디 중복 체크 (입력 중)
+def checkUserId(idData):
+    db = connDb.getDb('user')
+    if regDb.checkUserId(db, idData['userId']):
+        return {'result': 'success'}
+    else:
+        return {'result': 'fail'}
+
+
+# 이메일 중복 체크 (입력 중)
+def checkEmail(emailData):
+    db = connDb.getDb('user')
+    if regDb.checkEmail(db, emailData['email']):
+        return {'result': 'success'}
+    else:
+        return {'result': 'fail'}
+
+
+# 회원가입 처리
+def register(userInfo):
+    examData = {"userId": "", "password": "", "email": ""}
+    if userInfo.keys() != examData.keys():
+        return {'result': 'fail'}
+    else:
+        db = connDb.getDb('user')
+        if regDb.checkEmail(db, userInfo['email']) and regDb.checkUserId(db, userInfo['userId']):
+            regDb.addUser(db, userInfo)
+            return {'result': 'success'}
+        else:
+            return {'result': 'fail'}
+
+
+# 로그인 처리
+def login(loginData):
+    examData = {"userId": "", "password": ""}
+    if loginData.keys() != examData.keys():
+        return {'result': 'fail'}
+    else:
+        db = connDb.getDb('user')
+        if regDb.checkUserId(db, loginData['userId']):
+            return {'result': 'fail'}
+        else:
+            userData = loginDb.getUserData(db, loginData['userId'])
+            if userData['password'] == loginData['password']:
+                return {
+                    'result': 'success',
+                    'token': loginDb.getLoginToken(db, loginData['userId'])
+                }
+            else:
+                return {'result': 'fail'}
+
+
+# 자동 로그인 처리
+def autoLogin(tokenData):
+    examData = {"token": ""}
+    if tokenData.keys() != examData.keys():
+        return {'result': 'fail'}
+    else:
+        db = connDb.getDb('user')
+        userData = jwt.decode(tokenData['token'], 'secret', algorithms=['HS256'])
+        if loginDb.checkLoginToken(db, userData):
+            return {
+                'result': 'success',
+                'userId': userData['userId']
+            }
+        else:
+            return {'result': 'fail'}

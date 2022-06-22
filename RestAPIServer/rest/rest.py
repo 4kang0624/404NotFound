@@ -42,5 +42,46 @@ def post_insertDocument():
     return jsonify(result)
 
 
+# 입력 중 아이디 중복 체크
+@app.route('/checkUserId', methods=['POST'])
+def post_checkUserId():
+    param = request.get_json()
+    result = db.checkUserId(param)
+    return jsonify(result)
+
+
+# 입력 중 이메일 중복 체크
+@app.route('/checkEmail', methods=['POST'])
+def post_checkEmail():
+    param = request.get_json()
+    print(param)
+    result = db.checkEmail(param)
+    return jsonify(result)
+
+
+# 회원가입
+@app.route('/register', methods=['POST'])
+def post_register():
+    param = request.get_json()
+    result = db.register(param)
+    return jsonify(result)
+
+
+# 로그인
+@app.route('/login', methods=['POST'])
+def post_login():
+    param = request.get_json()
+    result = db.login(param)
+    return jsonify(result)
+
+
+# 자동 로그인
+@app.route('/autoLogin', methods=['POST'])
+def post_autoLogin():
+    param = request.get_json()
+    result = db.autoLogin(param)
+    return jsonify(result)
+
+
 if __name__ == "__main__":
     app.run()
