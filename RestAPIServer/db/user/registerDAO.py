@@ -11,8 +11,7 @@ def addUser(db, userInfoInput):
         "userContent": "",
         "name": "",
         "phoneNumber": "",
-        "achieve": [],
-        "history": []
+        "achieve": []
     }
     db['user'].insert_one(userInfo)
 

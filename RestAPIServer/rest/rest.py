@@ -83,5 +83,28 @@ def post_autoLogin():
     return jsonify(result)
 
 
+# 마이페이지 내 정보
+@app.route('/getUserData', methods=['POST'])
+def post_getUserData():
+    param = request.get_json()
+    result = db.getUserData(param)
+    return jsonify(result)
+
+
+# 유저 정보 수정
+@app.route('/updateUserData', methods=['POST'])
+def post_updateUserData():
+    param = request.get_json()
+    result = db.updateUserData(param)
+    return jsonify(result)
+
+
+@app.route('/deleteUser', methods=['POST'])
+def post_deleteUser():
+    param = request.get_json()
+    result = db.deleteUser(param)
+    return jsonify(result)
+
+
 if __name__ == "__main__":
     app.run()

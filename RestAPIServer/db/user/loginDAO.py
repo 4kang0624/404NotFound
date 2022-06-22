@@ -12,6 +12,8 @@ def getLoginToken(db, userId):
 # 토큰 확인
 def checkLoginToken(db, userData):
     dbData = db['user'].find_one({'userId': userData['userId']})
+    if dbData is None:
+        return False
     del dbData['_id']
     dbData.update({'loginToken': str(userData['loginToken'])})
     print(userData)

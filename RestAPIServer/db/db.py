@@ -2,6 +2,7 @@ from db.connection import dbConnectionDAO as connDao
 from db.document import accessDocumentDAO as docDao
 from db.user import registerDAO as regDao
 from db.user import loginDAO as loginDao
+from db.user import myPageDao as mpDao
 import jwt
 
 
@@ -114,7 +115,6 @@ def autoLogin(tokenData):
         try:
             db = connDao.getDb('user')
             userData = jwt.decode(tokenData['token'], 'secret', algorithms=['HS256'])
-            print(userData)
             if loginDao.checkLoginToken(db, userData):
                 return {
                     'result': 'success',
@@ -125,3 +125,45 @@ def autoLogin(tokenData):
         except jwt.exceptions.DecodeError:
             return {'result': 'fail'}
 
+
+# 마이페이지 정보 확인
+def getUserData(idData):
+    db = connDao.getDb('user')
+    if regDao.checkUserId(db, idData['userId']):
+        return {'result': 'fail'}
+    else:
+        userData = {'result': 'success'}
+        userData.update(mpDao.getUserDataForMyPage(db, idData['userId']))
+        return userData
+
+
+# 유저 정보 수정
+def updateUserData(userData):
+    sampleData = {"userId": "", "password": "", "email": "", "name": "", "phoneNumber": ""}
+    if userData.keys() != sampleData.keys():
+        return {'result': 'fail'}
+    else:
+        db = connDao.getDb('user')
+        if regDao.checkUserId(db, userData['userId']) or not regDao.checkEmail(db, userData['email']):
+            if userData['email'] == getUserData(userData)['email']:
+                userId = userData['userId']
+                del userData['userId']
+                mpDao.updateUserInfo(db, userId, userData)
+                return {'result': 'success'}
+            return {'result': 'fail'}
+        else:
+            userId = userData['userId']
+            del userData['userId']
+            mpDao.updateUserInfo(db, userId, userData)
+            return {'result': 'success'}
+
+
+# 회원 탈퇴
+def deleteUser(userData):
+    db = connDao.getDb('user')
+    if regDao.checkUserId(db, userData['userId']):
+        return {'result': 'fail'}
+    else:
+        userId = userData['userId']
+        mpDao.deleteUser(db, userId)
+        return {'result': 'success'}
