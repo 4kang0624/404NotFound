@@ -6,7 +6,7 @@ def insertDocument(db, data):
     dataInfo = {
         "version": getLastestVersion(db, data['title']) + 1,
         "datetime": datetime.datetime.utcnow()
-        }
+    }
     data.update(dataInfo)
     db['document'].insert_one(data)
 
@@ -25,6 +25,11 @@ def getLastestVersion(db, title):
         return version['version']
 
 
-# 해당 제목을 가진 문서의 가장 마지막 버전의 데이터를 반환하는 함수, 없으면 None을 반환
-def getLastestData(db, title):
-    return db['document'].find_one({'title': title, 'version': getLastestVersion(db, title)})
+# 해당 제목을 가진 문서의 가장 마지막 버전의 데이터를 반환하는 함수
+def getOneDocument(db, title, version):
+    return db['document'].find_one({'title': title, 'version': version})
+
+
+# 해당 제목을 가진 문서의 로그 리스트를 반환하는 함수
+def getOneDocumentLog(db, title):
+    return db['document'].find({'title': title})

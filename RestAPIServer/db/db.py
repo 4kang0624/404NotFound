@@ -1,29 +1,49 @@
-from connection import dbConnection as conn
-from document import accessDocumentDb as docDb
+from db.connection import dbConnection as connDb
+from db.document import accessDocumentDb as docDb
 
 
-db = conn.getDb('test')
-print(db)
+# 문서의 가장 최종버전 반환
+def getDocument(title, version=None):
+    db = connDb.getDb('document')
+    if version is None:
+        version = docDb.getLastestVersion(db, title)
+    Data = docDb.getOneDocument(db, title, version)
+    return Data
 
 
-data = {
-    "title": "Hello World",
-    "content": "<code>Hello World</code><h1>Hello World를 출력하는 코드werqwer1232wefawae3</h1>",
-    "user": "4kang0624",
-}
+# 문서의 로그 리스트 반환 (제목, 유저, 버전, 시간)
+def getDocumentLog(title):
+    db = connDb.getDb('document')
+    log = docDb.getOneDocumentLog(db, title)
+    resultLog = []
+    for data in log:
+        del data['_id']
+        del data['title']
+        del data['content']
+        resultLog.append(data)
+    if len(resultLog) == 0:
+        return {'result': 'fail'}
+    else:
+        resultLogDict = {'result': 'success'}
+        resultLogDict.update({'log': resultLog})
+        return resultLogDict
 
 
-dataInDocument = docDb.getDbData(db)
-for d in dataInDocument:
-    print(d)
-print()
-
-docDb.insertDocument(db, data)
-
-dataInDocument = docDb.getDbData(db)
-for d in dataInDocument:
-    print(d)
-print()
-
-lastestData = docDb.getLastestData(db, "Hello World")
-print(lastestData)
+# 문서 DB에 새로운 데이터 삽입
+def insertDocument(data):
+    db = connDb.getDb('document')
+    if docDb.getLastestVersion(db, data['title']) != 0:
+        lastestDocument = getDocument(data['title'])
+        del lastestDocument['_id']
+        del lastestDocument['version']
+        del lastestDocument['datetime']
+        if data.keys() != lastestDocument.keys():
+            return {'result': 'fail'}
+        elif lastestDocument['content'] == data['content']:
+            return {'result': 'same'}
+        else:
+            docDb.insertDocument(db, data)
+            return {'result': 'success'}
+    else:
+        docDb.insertDocument(db, data)
+        return {'result': 'success'}
