@@ -25,9 +25,9 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/checkEmail
+POST http://localhost:5000/autoLogin
 content-type: application/json
 
 {
-  "email": "4kang0624@naver.com"
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJrYW5nMDYyNCIsInBhc3N3b3JkIjoiMTIzNCIsImVtYWlsIjoiNGthbmcwNjI0QG5hdmVyLmNvbSIsImxvZ2luVG9rZW4iOiIyMDIyLTA2LTIyIDIxOjM2OjI1LjY0MTAwMCIsInVzZXJDb250ZW50IjoiIiwibmFtZSI6IiIsInBob25lTnVtYmVyIjoiIiwiYWNoaWV2ZSI6W10sImhpc3RvcnkiOltdfQ.MsmUgCgF8ciAJ2heB0u2MsnxclhbrYYQ4CJZe-ls64I"
 }

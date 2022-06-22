@@ -96,9 +96,10 @@ def login(loginData):
         else:
             userData = loginDb.getUserData(db, loginData['userId'])
             if userData['password'] == loginData['password']:
+                token = loginDb.getLoginToken(db, loginData['userId'])
                 return {
                     'result': 'success',
-                    'token': loginDb.getLoginToken(db, loginData['userId'])
+                    'token': token
                 }
             else:
                 return {'result': 'fail'}
@@ -110,12 +111,17 @@ def autoLogin(tokenData):
     if tokenData.keys() != examData.keys():
         return {'result': 'fail'}
     else:
-        db = connDb.getDb('user')
-        userData = jwt.decode(tokenData['token'], 'secret', algorithms=['HS256'])
-        if loginDb.checkLoginToken(db, userData):
-            return {
-                'result': 'success',
-                'userId': userData['userId']
-            }
-        else:
+        try:
+            db = connDb.getDb('user')
+            userData = jwt.decode(tokenData['token'], 'secret', algorithms=['HS256'])
+            print(userData)
+            if loginDb.checkLoginToken(db, userData):
+                return {
+                    'result': 'success',
+                    'userId': userData['userId']
+                }
+            else:
+                return {'result': 'fail'}
+        except jwt.exceptions.DecodeError:
             return {'result': 'fail'}
+
