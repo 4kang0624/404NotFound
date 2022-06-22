@@ -1,23 +1,23 @@
-from db.connection import dbConnectionDAO as connDb
-from db.document import accessDocumentDAO as docDb
-from db.user import registerDAO as regDb
-from db.user import loginDAO as loginDb
+from db.connection import dbConnectionDAO as connDao
+from db.document import accessDocumentDAO as docDao
+from db.user import registerDAO as regDao
+from db.user import loginDAO as loginDao
 import jwt
 
 
 # 문서의 가장 최종버전 반환
 def getDocument(title, version=None):
-    db = connDb.getDb('document')
+    db = connDao.getDb('document')
     if version is None:
-        version = docDb.getLastestVersion(db, title)
-    Data = docDb.getOneDocument(db, title, version)
+        version = docDao.getLastestVersion(db, title)
+    Data = docDao.getOneDocument(db, title, version)
     return Data
 
 
 # 문서의 로그 리스트 반환 (제목, 유저, 버전, 시간)
 def getDocumentLog(title):
-    db = connDb.getDb('document')
-    log = docDb.getOneDocumentLog(db, title)
+    db = connDao.getDb('document')
+    log = docDao.getOneDocumentLog(db, title)
     resultLog = []
     for data in log:
         del data['_id']
@@ -34,8 +34,8 @@ def getDocumentLog(title):
 
 # 문서 DB에 새로운 데이터 삽입
 def insertDocument(data):
-    db = connDb.getDb('document')
-    if docDb.getLastestVersion(db, data['title']) != 0:
+    db = connDao.getDb('document')
+    if docDao.getLastestVersion(db, data['title']) != 0:
         lastestDocument = getDocument(data['title'])
         del lastestDocument['_id']
         del lastestDocument['version']
@@ -45,17 +45,17 @@ def insertDocument(data):
         elif lastestDocument['content'] == data['content']:
             return {'result': 'same'}
         else:
-            docDb.insertDocument(db, data)
+            docDao.insertDocument(db, data)
             return {'result': 'success'}
     else:
-        docDb.insertDocument(db, data)
+        docDao.insertDocument(db, data)
         return {'result': 'success'}
 
 
 # 아이디 중복 체크 (입력 중)
 def checkUserId(idData):
-    db = connDb.getDb('user')
-    if regDb.checkUserId(db, idData['userId']):
+    db = connDao.getDb('user')
+    if regDao.checkUserId(db, idData['userId']):
         return {'result': 'success'}
     else:
         return {'result': 'fail'}
@@ -63,8 +63,8 @@ def checkUserId(idData):
 
 # 이메일 중복 체크 (입력 중)
 def checkEmail(emailData):
-    db = connDb.getDb('user')
-    if regDb.checkEmail(db, emailData['email']):
+    db = connDao.getDb('user')
+    if regDao.checkEmail(db, emailData['email']):
         return {'result': 'success'}
     else:
         return {'result': 'fail'}
@@ -76,9 +76,9 @@ def register(userInfo):
     if userInfo.keys() != examData.keys():
         return {'result': 'fail'}
     else:
-        db = connDb.getDb('user')
-        if regDb.checkEmail(db, userInfo['email']) and regDb.checkUserId(db, userInfo['userId']):
-            regDb.addUser(db, userInfo)
+        db = connDao.getDb('user')
+        if regDao.checkEmail(db, userInfo['email']) and regDao.checkUserId(db, userInfo['userId']):
+            regDao.addUser(db, userInfo)
             return {'result': 'success'}
         else:
             return {'result': 'fail'}
@@ -90,13 +90,13 @@ def login(loginData):
     if loginData.keys() != examData.keys():
         return {'result': 'fail'}
     else:
-        db = connDb.getDb('user')
-        if regDb.checkUserId(db, loginData['userId']):
+        db = connDao.getDb('user')
+        if regDao.checkUserId(db, loginData['userId']):
             return {'result': 'fail'}
         else:
-            userData = loginDb.getUserData(db, loginData['userId'])
+            userData = loginDao.getUserData(db, loginData['userId'])
             if userData['password'] == loginData['password']:
-                token = loginDb.getLoginToken(db, loginData['userId'])
+                token = loginDao.getLoginToken(db, loginData['userId'])
                 return {
                     'result': 'success',
                     'token': token
@@ -112,10 +112,10 @@ def autoLogin(tokenData):
         return {'result': 'fail'}
     else:
         try:
-            db = connDb.getDb('user')
+            db = connDao.getDb('user')
             userData = jwt.decode(tokenData['token'], 'secret', algorithms=['HS256'])
             print(userData)
-            if loginDb.checkLoginToken(db, userData):
+            if loginDao.checkLoginToken(db, userData):
                 return {
                     'result': 'success',
                     'userId': userData['userId']
