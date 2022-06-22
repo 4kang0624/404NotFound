@@ -8,9 +8,9 @@ print(db)
 
 data = {
     "title": "Hello World",
-    "content": "<code>Hello World</code>""<h1>Hello World를 출력하는 코드werqwer1232wefawae3</h1>",
+    "content": "<code>Hello World</code><h1>Hello World를 출력하는 코드werqwer1232wefawae3</h1>",
     "user": "4kang0624",
-    }
+}
 
 
 dataInDocument = docDb.getDbData(db)
