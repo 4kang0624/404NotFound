@@ -1,0 +1,51 @@
+import { InputBase, Typography, Paper, IconButton, Card, Grid } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
+import { Box } from "@mui/system";
+import React from "react";
+
+function Home() {
+  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  return (
+      <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+        <Typography
+          variant="h2"
+          textAlign={"center"}
+          fontWeight={"600"}
+          marginTop={"100px"}
+          marginBottom={"50px"}
+        >
+          코드위키
+        </Typography>
+        <Paper
+          component="form"
+          sx={{
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 400,
+            height: 40,
+            borderRadius: "20px", 
+            bgcolor: "black"
+          }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1, color: "white"}}
+            // placeholder="Search Google Maps"
+            inputProps={{ "aria-label": "search document" }}
+          />
+          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+            <SearchIcon sx={{color: "white"}}/>
+          </IconButton>
+        </Paper>
+        <Grid container sx={{marginY: "50px"}}>
+          {array.map((el) => (
+            <Grid item xs={4} sx={{padding: "1rem", height: "200px"}}>
+              <Card variant="outlined" sx={{height: "100%"}}>{el}</Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+  );
+}
+
+export default Home;
