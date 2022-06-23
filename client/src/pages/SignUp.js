@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, TextField } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -91,13 +91,23 @@ function SignUp() {
   };
 
   return (
-    <Box marginTop={"150px"} marginX={"20%"}>
-      <Paper sx={{ height: "400px" }}>
+    <Box marginTop={"150px"} display={"flex"} justifyContent={"center"}>
+      <Paper sx={{ width: "880px", height: "446px" }}>
         <Grid container>
-          <Grid item xs={4} height={"400px"} bgcolor={"#2C2D36"}>
-            <Box height={"100%"}></Box>
+          <Grid
+            item
+            width={285}
+            height={446}
+            bgcolor={"#0D90B2"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Typography variant="h3" component="h3" color={"white"}>
+              Code<b>Wiki</b>
+            </Typography>
           </Grid>
-          <Grid item xs={8} height={"400px"}>
+          <Grid item width={595} height={446} bgcolor={"#E4E3E3"}>
             <Box sx={{ display: "flex", justifyContent: "end" }}>
               <Button onClick={goSignIn}>로그인</Button>
               <Button onClick={goSignUp}>회원가입</Button>
@@ -109,6 +119,11 @@ function SignUp() {
                 onChange={changeId}
                 placeholder="아이디"
                 variant="outlined"
+                sx={{
+                  width: 372,
+                  height: 52,
+                  marginY: 1,
+                }}
               />
               <TextField
                 id="outlined-basic"
@@ -117,6 +132,11 @@ function SignUp() {
                 type="email"
                 placeholder="이메일"
                 variant="outlined"
+                sx={{
+                  width: 372,
+                  height: 52,
+                  marginY: 1,
+                }}
               />
               <TextField
                 id="outlined-basic"
@@ -125,6 +145,11 @@ function SignUp() {
                 type="password"
                 placeholder="비밀번호"
                 variant="outlined"
+                sx={{
+                  width: 372,
+                  height: 52,
+                  marginY: 1,
+                }}
               />
               <TextField
                 id="outlined-basic"
@@ -133,8 +158,15 @@ function SignUp() {
                 type="password"
                 placeholder="비밀번호확인"
                 variant="outlined"
+                sx={{
+                  width: 372,
+                  height: 52,
+                  marginY: 1,
+                }}
               />
-              <Button type="submit">회원가입</Button>
+              <Button variant="contained" type="submit">
+                회원가입
+              </Button>
             </Form>
           </Grid>
         </Grid>
@@ -148,5 +180,6 @@ export default SignUp;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 4rem;
 `;

@@ -4,22 +4,30 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import SearchResult from "../components/SearchResult";
-import { getDocument } from "../redux/modules/document";
+import { getDocument, matchTitleList } from "../redux/modules/document";
 import { useDispatch } from "react-redux";
 
 function Home() {
   const [search, setSearch] = useState("");
   const [documents, setDocuments] = useState([]);
+  const [matchTitle, setMatchTitle] = useState([]);
   const dispatch = useDispatch();
 
   const changeInput = e => {
     const obj = {
       title: e.target.value.trim(),
     };
+    dispatch(matchTitleList(obj)).then(res => {
+      console.log(obj.title);
+      if (obj.title === "") {
+        return setMatchTitle([]);
+      }
+      setMatchTitle(res.payload?.matchData);
+    });
 
     dispatch(getDocument(obj)).then(res => {
       if (res.payload?.result === "fail") {
-        return;
+        return setDocuments([]);
       }
       setDocuments([res.payload]);
     });
@@ -37,7 +45,6 @@ function Home() {
       >
         코드위키
       </Typography>
-
       <Paper
         variant="outlined"
         component="form"
@@ -48,7 +55,7 @@ function Home() {
           width: 400,
           height: 40,
           border: "1px solid gray",
-          outlineColor: "white",
+          outline: "1px solid #0D90B2",
           bgcolor: "white",
           boxShadow: 0,
         }}
@@ -63,6 +70,10 @@ function Home() {
           <SearchIcon sx={{ color: "black" }} />
         </IconButton>
       </Paper>
+      {matchTitle.length !== 0 &&
+        matchTitle.map((item, i) => (
+          <React.Fragment key={i}>{matchTitle + " "}</React.Fragment>
+        ))}
       {documents.length !== 0 && <SearchResult documents={documents} />}
     </Box>
   );

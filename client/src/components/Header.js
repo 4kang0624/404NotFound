@@ -20,7 +20,8 @@ function Header() {
 
   const logout = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    return alert("로그아웃되었습니다.");
+    alert("로그아웃되었습니다.");
+    return navigate("/");
   };
 
   return (
