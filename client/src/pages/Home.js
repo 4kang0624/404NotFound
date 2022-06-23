@@ -1,10 +1,10 @@
-import { InputBase, Typography, Paper, IconButton, Card, Grid } from "@mui/material";
+import { InputBase, Typography, Paper, IconButton} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from "@mui/system";
 import React from "react";
+import SearchResult from "../components/SearchResult";
 
 function Home() {
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
       <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
         <Typography
@@ -37,13 +37,7 @@ function Home() {
             <SearchIcon sx={{color: "white"}}/>
           </IconButton>
         </Paper>
-        <Grid container sx={{marginY: "50px"}}>
-          {array.map((el) => (
-            <Grid item xs={4} sx={{padding: "1rem", height: "200px"}}>
-              <Card variant="outlined" sx={{height: "100%"}}>{el}</Card>
-            </Grid>
-          ))}
-        </Grid>
+        <SearchResult/>
       </Box>
   );
 }

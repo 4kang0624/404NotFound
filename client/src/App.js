@@ -5,14 +5,14 @@ import Missing from "./pages/Missing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Document from "./pages/Document"
-import Navigation from "./components/Navigation";
+import Header from "./components/Header";
 import { Container } from "@mui/material";
 import Discussion from "./pages/Discussion";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navigation/>
+      <Header/>
       <Container sx={{maxWidth: "1280px"}}>
         <Routes>
           <Route path="/" element={<Home/>} />

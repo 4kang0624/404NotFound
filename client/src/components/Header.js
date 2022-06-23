@@ -3,7 +3,7 @@ import {Box, Grid, Typography} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-function Navigation() {
+function Header() {
   const navigate = useNavigate();
   const titleRef = useRef(null);
   
@@ -42,4 +42,4 @@ function Navigation() {
   )
 }
 
-export default Navigation;
+export default Header;

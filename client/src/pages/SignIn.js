@@ -2,9 +2,14 @@ import { Box, Button, Grid, Paper, TextField } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {loginUser} from "../redux/modules/user";
 
 function SignIn() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,6 +29,32 @@ function SignIn() {
     navigate("/signup");
   }
 
+  const checkInput = () =>{
+    if(id !== "" &&  password !== ""){
+      return true;
+    }
+    alert('아직 입력이 안된 양식이 있습니다!');
+    return false;
+  }
+
+  const onSubmitHandler = (e) =>{
+    e.preventDefault();
+    if(!checkInput()){
+      return ;
+    }
+    const obj = {
+      userId: id,
+      password,
+    }
+    dispatch(loginUser(obj)).then(res => {
+      if(res.payload?.result){
+        return alert('로그인 완료했습니다!');
+      }else{
+        return alert('로그인 실패했습니다!');
+      }
+    });
+  }
+
   return (
     <Box marginTop={"200px"} marginX={"20%"}>
       <Paper sx={{height: "300px"}}>
@@ -36,10 +67,10 @@ function SignIn() {
               <Button onClick={goSignIn}>로그인</Button>
               <Button onClick={goSignUp}>회원가입</Button>
             </Box>
-            <Form>
+            <Form onSubmit={onSubmitHandler}>
               <TextField id="outlined-basic" value={id} onChange={changeId} placeholder='아이디' variant="outlined" />
               <TextField id="outlined-basic" value={password} onChange={changePassword} type="password" placeholder='비밀번호' variant="outlined" />
-              <Button>로그인</Button>
+              <Button type='submit'>로그인</Button>
             </Form>
           </Grid>
         </Grid>
