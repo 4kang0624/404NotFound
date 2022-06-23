@@ -34,7 +34,11 @@ export const insertDocument = dataToSubmit => {
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case GET_DOCUMENT:
-      return { ...state };
+      return { ...state, documentData: action.payload };
+    case GET_DOCUMENT_LOG:
+      return { ...state, documentLog: action.payload?.log };
+    case INSERT_DOCUMENT:
+      return { ...state, insertDocumentSuccess: action.payload?.result };
     default:
       return state;
   }

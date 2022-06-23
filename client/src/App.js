@@ -7,9 +7,10 @@ import SignUp from "./pages/SignUp";
 import Document from "./pages/Document";
 import Header from "./components/Header";
 import { Container } from "@mui/material";
-import Discussion from "./pages/Discussion";
+import EditDiscussion from "./pages/EditDiscussion";
 import EditDocument from "./pages/EditDocument";
 import auth from "./hoc/auth";
+import Discussion from "./pages/Discussion";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
           {/* <Route path=":id"/> */}
           <Route path="/edit_document" element={auth(EditDocument, null)} />
           <Route path="/discussion" element={auth(Discussion, null)} />
+          <Route path="/edit_discussion" element={auth(EditDiscussion, null)} />
           <Route path="*" element={auth(Missing, null)} />
         </Routes>
       </Container>

@@ -1,10 +1,18 @@
-import { InputBase, Typography, Paper, IconButton } from "@mui/material";
+import {
+  InputBase,
+  Typography,
+  Paper,
+  IconButton,
+  Chip,
+  Grid,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import SearchResult from "../components/SearchResult";
 
 function Home() {
+  const [isCard, setIsCard] = useState(false);
   return (
     <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
       <Typography
@@ -37,7 +45,37 @@ function Home() {
           <SearchIcon sx={{ color: "white" }} />
         </IconButton>
       </Paper>
-      <SearchResult />
+      <Grid container sx={{ maxWidth: "900px", marginTop: "30px" }}>
+        <Grid item xs={3} textAlign={"center"}>
+          <Chip
+            label="학생"
+            variant="outlined"
+            onClick={() => console.log("dd")}
+          />
+        </Grid>
+        <Grid item xs={3} textAlign={"center"}>
+          <Chip
+            label="주니어개발자"
+            variant="outlined"
+            onClick={() => console.log("dd")}
+          />
+        </Grid>
+        <Grid item xs={3} textAlign={"center"}>
+          <Chip
+            label="시니어개발자"
+            variant="outlined"
+            onClick={() => console.log("dd")}
+          />
+        </Grid>
+        <Grid item xs={3} textAlign={"center"}>
+          <Chip
+            label="전체"
+            variant="outlined"
+            onClick={() => console.log("dd")}
+          />
+        </Grid>
+      </Grid>
+      {isCard && <SearchResult />}
     </Box>
   );
 }
