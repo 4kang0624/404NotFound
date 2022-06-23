@@ -42,3 +42,21 @@ def post_insertDocument():
     param = request.get_json()
     result = db.insertDocument(param)
     return jsonify(result)
+
+
+# 문서 타이틀 검색
+@documentApi.route('/match-title-list', methods=['POST'])
+def post_matchTitleList():
+    param = request.get_json()
+    search = param['title']
+    data = db.getMatchTitleList(search)
+    return jsonify(data)
+
+
+# 최근 문서 반환
+@documentApi.route('/recent-document-list', methods=['POST'])
+def post_recentDocument():
+    param = request.get_json()
+    count = param['count']
+    data = db.getRecentDocumentList(count)
+    return jsonify(data)

@@ -33,3 +33,13 @@ def getOneDocument(db, title, version):
 # 해당 제목을 가진 문서의 로그 리스트를 반환하는 함수
 def getOneDocumentLog(db, title):
     return db['document'].find({'title': title})
+
+
+# 문자와 매치되는 제목을 반환하는 함수
+def findByMatch(db, charactor):
+    queryStr = {'$regex': '.*' + charactor + '.*'}
+    return db['document'].find({'title': queryStr})
+
+
+def getRecentDocument(db, count):
+    return db['document'].find().sort([('datetime', -1)]).limit(count)

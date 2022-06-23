@@ -44,3 +44,24 @@ class InsertDocument(Resource):
         """문서를 만들거나 수정합니다."""
         global count
         global discussion
+
+
+@Document.route('/match-title-list')
+class MatchTitleList(Resource):
+    @Document.expect(Document.model('Match Title List', {
+        "title": fields.String(required=True, description="문서 제목")
+    }))
+    def post(self):
+        """연관 검색어를 출력합니다"""
+        global count
+        global discussion
+
+
+@Document.route('/recent-document-list')
+class RecentDocument(Resource):
+    @Document.expect(Document.model('Recent Document List', {
+        "count": fields.Integer(required=True, description="출력하기를 원하는 문서 리스트 갯수")
+    }))
+    def post(self):
+        """최근 문서를 출력합니다"""
+        global count

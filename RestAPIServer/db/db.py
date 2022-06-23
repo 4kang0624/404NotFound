@@ -55,6 +55,31 @@ def insertDocument(data):
         return {'result': 'success'}
 
 
+# 문서 타이틀 검색
+def getMatchTitleList(search):
+    db = connDao.getDb('document')
+    docData = docDao.findByMatch(db, search)
+    resultList = []
+    for data in docData:
+        if data['title'] not in resultList:
+            resultList.append(data['title'])
+    return {"matchData": resultList}
+
+
+# 최근 문서 리스트 반환
+def getRecentDocumentList(count):
+    db = connDao.getDb('document')
+    recentData = docDao.getRecentDocument(db, count)
+    resultList = []
+    print(recentData)
+    for data in recentData:
+        resultList.append({
+            'title': data['title'],
+            'version': data['version']
+        })
+    return {"recentData": resultList}
+
+
 # 아이디 중복 체크 (입력 중)
 def checkUserId(idData):
     db = connDao.getDb('user')
