@@ -19,6 +19,10 @@ SWUniv Joint Hackathon Project
 + 디자이너 | 김형섭 | 상명대학교 | 소통
 ```
 
+##코드위키의 이용방법
+![image](https://user-images.githubusercontent.com/87464704/175434248-99883e87-1ea0-4b5e-9a68-d4c8bdb8040a.png)
+
+
 ## Installation
 * Python Package
 ```console
