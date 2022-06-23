@@ -21,7 +21,7 @@ function Header() {
       <Grid
         container
         textAlign={"center"}
-        bgcolor={"#2C2D36"}
+        bgcolor={"#0D90B2"}
         height={"50px"}
         color={"white"}
         display={"flex"}
@@ -32,10 +32,10 @@ function Header() {
             ref={titleRef}
             variant="h6"
             component={"h6"}
-            color={"#61DAFB"}
+            color={"white"}
             onClick={goHome}
           >
-            CodeWiki
+            Code<b>Wiki</b>
           </Typography>
         </Grid>
         <Grid item xs={0.8} sx={{ "&>a": { color: "white" } }}>
@@ -48,12 +48,7 @@ function Header() {
           <Link to="/edit_document">글쓰기</Link>
         </Grid>
         <Grid item xs={3.5} display={"flex"} justifyContent={"end"}>
-          <Box
-            border={"1px solid white"}
-            width={"50px"}
-            height={"50px"}
-            bgcolor={"#D9D9D9"}
-          >
+          <Box width={"50px"} height={"50px"} bgcolor={"#0D90B2"}>
             <Box
               borderRadius={"50%"}
               bgcolor={"white"}

@@ -11,11 +11,12 @@ import EditDiscussion from "./pages/EditDiscussion";
 import EditDocument from "./pages/EditDocument";
 import auth from "./hoc/auth";
 import Discussion from "./pages/Discussion";
+import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Container sx={{ maxWidth: "1280px" }}>
+      <Container sx={{ maxWidth: "1280px", position: "relative" }}>
         <Routes>
           <Route path="/" element={auth(Home, null)} />
           <Route path="/signin" element={auth(SignIn, false)} />
@@ -27,6 +28,7 @@ function App() {
           <Route path="/edit_discussion" element={auth(EditDiscussion, true)} />
           <Route path="*" element={auth(Missing, null)} />
         </Routes>
+        <Footer />
       </Container>
     </BrowserRouter>
   );
