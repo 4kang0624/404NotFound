@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { signUpUser } from "../redux/modules/user";
+import { signUpUser, checkEmail, checkUserID } from "../redux/modules/user";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -37,6 +37,9 @@ function SignUp() {
   const goSignUp = () => {
     navigate("/signup");
   };
+  // const checkEmailInput = () =>{
+
+  // }
 
   const checkInput = () => {
     const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,15}$/;
@@ -69,12 +72,21 @@ function SignUp() {
       password,
       email,
     };
-    dispatch(signUpUser(obj)).then(res => {
-      if (res.payload?.result) {
-        return alert("회원가입 완료했습니다!");
-      } else {
-        return alert("회원가입 실패했습니다!");
+    dispatch(checkUserID({ userId: id })).then(res => {
+      if (res.payload?.result === "fail") {
+        return alert("이미 있는 아이디입니다.");
       }
+      dispatch(checkEmail({ email })).then(res => {
+        if (res.payload?.result === "fail")
+          return alert("이미 있는 이메일입니다.");
+        dispatch(signUpUser(obj)).then(res => {
+          if (res.payload?.result !== "fail") {
+            return alert("회원가입 완료했습니다!");
+          } else {
+            return alert("회원가입 실패했습니다!");
+          }
+        });
+      });
     });
   };
 

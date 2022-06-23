@@ -10,6 +10,7 @@ const UPDATE_USER_DATA = "user/UPDATE_USER_DATA";
 const DELETE_USER = "user/DELETE_USER";
 const MODIFY_USER_CONTENT = "user/MODIFY_USER_CONTENT";
 const GET_USER_CONTENT = "user/GET_USER_CONTENT";
+const CHECK_USER_ID = "user/CHECK_ID";
 
 //action creator
 export const loginUser = dataToSubmit => {
@@ -22,7 +23,7 @@ export const loginUser = dataToSubmit => {
 
 export const authorize = () => {
   const request = axios
-    .post("/user/auto-login")
+    .get("/user/auto-login")
     .then(res => res.data)
     .catch(err => console.log(err));
   return { type: AUTHORIZATION, payload: request };
@@ -42,6 +43,14 @@ export const checkEmail = dataToSubmit => {
     .then(res => res.data)
     .catch(err => console.log(err));
   return { type: CHECK_EMAIL, payload: request };
+};
+
+export const checkUserID = dataToSubmit => {
+  const request = axios
+    .post("/user/check-user-id", dataToSubmit)
+    .then(res => res.data)
+    .catch(err => console.log(err));
+  return { type: CHECK_USER_ID, payload: request };
 };
 
 export const getUserData = dataToSubmit => {

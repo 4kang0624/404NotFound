@@ -16,10 +16,10 @@ export default function auth(SpecificComponent, option) {
     useEffect(() => {
       dispatch(authorize()).then(response => {
         // 로그인 하지 않은 상태
-        if (response.payload?.result) {
-          console.log(response);
+        console.log(response.payload?.result);
+        if (response.payload?.result !== "fail") {
           //로그인 한 상태
-          if (!option) {
+          if (option === false) {
             navigate("/");
           }
         } else {

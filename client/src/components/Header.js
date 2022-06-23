@@ -39,7 +39,7 @@ function Header() {
           </Typography>
         </Grid>
         <Grid item xs={0.8} sx={{ "&>a": { color: "white" } }}>
-          <Link to="/document">문서</Link>
+          <Link to="/signin">로그인</Link>
         </Grid>
         <Grid item xs={0.8} sx={{ "&>a": { color: "white" } }}>
           <Link to="/discussion">토론</Link>
