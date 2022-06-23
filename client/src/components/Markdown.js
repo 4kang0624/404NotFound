@@ -1,26 +1,41 @@
 import React, { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { Box, Button, Grid } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { insertDocument } from "../redux/modules/document";
+import useBeforeLeave from "../hooks/useBeforeLeave";
+import { useNavigate } from "react-router-dom";
 
-const mkdStr = `# Markdown Editor for [React](https://facebook.github.io/react/)
+function Markdown({ title }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userId = useSelector(state => state.user.userId);
+  const [content, setContent] = useState("");
+  const beforeFC = () => window.confirm("사이트에 나가시겠습니까?");
+  useBeforeLeave(beforeFC);
 
-**Hello world!!!**
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    if (content === "" || title === "") {
+      return alert("양식이 비워져있습니다.");
+    }
+    const obj = {
+      content,
+      title,
+      user: userId,
+    };
 
-[![](https://avatars.githubusercontent.com/u/1680273?s=80&v=4)](https://avatars.githubusercontent.com/u/1680273?v=4)
-
-\`\`\`javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import MEDitor from '@uiw/react-md-editor';
-
-\`\`\`
-`;
-
-function Markdown() {
-  const [value, setValue] = useState(mkdStr);
+    dispatch(insertDocument(obj)).then(res => {
+      if (res.payload?.result === "fail") {
+        return alert("등록할 수가 없습니다.");
+      }
+      alert("성공적으로 등록했습니다!");
+      return navigate("/");
+    });
+  };
   return (
-    <Box component={"form"} sx={{ width: "100%" }}>
-      <MDEditor height={600} value={value} onChange={setValue} />
+    <Box component={"form"} sx={{ width: "100%" }} onSubmit={onSubmitHandler}>
+      <MDEditor height={600} value={content} onChange={setContent} />
       <Grid
         container
         display={"flex"}
@@ -28,7 +43,9 @@ function Markdown() {
         marginTop={"1rem"}
       >
         <Grid item>
-          <Button variant="contained">저장</Button>
+          <Button variant="contained" type="submit">
+            등록
+          </Button>
         </Grid>
       </Grid>
     </Box>

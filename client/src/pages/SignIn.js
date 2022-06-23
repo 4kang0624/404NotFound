@@ -47,7 +47,10 @@ function SignIn() {
     };
     dispatch(loginUser(obj)).then(res => {
       if (res.payload?.result) {
-        return alert("로그인 완료했습니다!");
+        const { token } = res.payload;
+        document.cookie = `token=${token}`;
+        alert("로그인 완료했습니다!");
+        return navigate("/");
       } else {
         return alert("로그인 실패했습니다!");
       }
