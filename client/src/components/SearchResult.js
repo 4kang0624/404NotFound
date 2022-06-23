@@ -6,8 +6,8 @@ function SearchResult() {
   
   return (
     <Grid container sx={{marginY: "50px"}}>
-      {array.map((el) => (
-        <Grid item xs={4} sx={{padding: "1rem", height: "200px"}}>
+      {array.map((el, i) => (
+        <Grid key={i} item xs={4} sx={{padding: "1rem", height: "200px"}}>
           <Card variant="outlined" sx={{height: "100%"}}>{el}</Card>
         </Grid>
       ))}

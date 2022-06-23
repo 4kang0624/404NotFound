@@ -30,7 +30,7 @@ function Header() {
           <Link to="/discussion">토론</Link>
         </Grid>
         <Grid item xs={0.8} sx={{'&>a':{color: "white" }}}>
-          <Link to="/signin">로그인</Link>
+          <Link to="/edit_document">글쓰기</Link>
         </Grid>
         <Grid item xs={3.5} display={"flex"} justifyContent={"end"}>
           <Box border={"1px solid white"} width={"50px"} height={"50px"} bgcolor={"#D9D9D9"}>

@@ -2,7 +2,7 @@ import { Box, Button, Grid, Paper, TextField } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {signUpUser} from "../redux/modules/user";
 
 function SignUp() {
@@ -82,7 +82,7 @@ function SignUp() {
     <Box marginTop={"150px"} marginX={"20%"}>
       <Paper sx={{height: "400px"}}>
         <Grid container>
-          <Grid item xs={4} height={"400px"} bgcolor={"black"}>
+          <Grid item xs={4} height={"400px"} bgcolor={"#2C2D36"}>
             <Box height={"100%"}></Box>
           </Grid>
           <Grid item xs={8} height={"400px"}>

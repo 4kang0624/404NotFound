@@ -8,6 +8,9 @@ import Document from "./pages/Document"
 import Header from "./components/Header";
 import { Container } from "@mui/material";
 import Discussion from "./pages/Discussion";
+import EditDocument from "./pages/EditDocument";
+import auth from "./hoc/auth";
+
 
 function App() {
   return (
@@ -15,14 +18,14 @@ function App() {
       <Header/>
       <Container sx={{maxWidth: "1280px"}}>
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/signin" element={<SignIn/>} />
-          <Route path="/signup" element={<SignUp/>} />
-          <Route path="/document" element={<Document/>}>
+          <Route path="/" element={auth(Home, null)} />
+          <Route path="/signin" element={auth(SignIn, null)} />
+          <Route path="/signup" element={auth(SignUp, null)} />
+          <Route path="/document" element={auth(Document, null)}/>
             {/* <Route path=":id"/> */}
-          </Route>
-          <Route path="/discussion" element={<Discussion/>}/>
-          <Route path="*" element={<Missing/>} />
+          <Route path="/edit_document" element={auth(EditDocument, null)}/>
+          <Route path="/discussion" element={auth(Discussion, null)}/>
+          <Route path="*" element={auth(Missing, null)} />
         </Routes>
       </Container>
     </BrowserRouter>
@@ -30,3 +33,13 @@ function App() {
 }
 
 export default App;
+//제대로 실행하려면 아래로 교체하기
+
+// <Route path="/" element={auth(Home, null)} />
+// <Route path="/signin" element={auth(SignIn, false)} />
+// <Route path="/signup" element={auth(SignUp, false)} />
+// <Route path="/document" element={auth(Document, null)}/>
+//   {/* <Route path=":id"/> */}
+// <Route path="/edit_document" element={auth(EditDocument, true)}/>
+// <Route path="/discussion" element={auth(Discussion, null)}/>
+// <Route path="*" element={auth(Missing, null)} />

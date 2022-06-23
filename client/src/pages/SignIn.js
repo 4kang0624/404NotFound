@@ -59,7 +59,7 @@ function SignIn() {
     <Box marginTop={"200px"} marginX={"20%"}>
       <Paper sx={{height: "300px"}}>
         <Grid container>
-          <Grid item xs={4} height={"300px"} bgcolor={"black"}>
+          <Grid item xs={4} height={"300px"} bgcolor={"#2C2D36"}>
             <Box height={"100%"}></Box>
           </Grid>
           <Grid item xs={8} height={"300px"}>
