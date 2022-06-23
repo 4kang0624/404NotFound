@@ -8,7 +8,7 @@ const INSERT_DOCUMENT = "document/INSERT";
 //action creator
 export const getDocument = dataToSubmit => {
   const request = axios
-    .post("/getDocument", dataToSubmit)
+    .post("/document/get-document", dataToSubmit)
     .then(res => res.data)
     .catch(err => alert(err.message));
   return { type: GET_DOCUMENT, payload: request };
@@ -16,7 +16,7 @@ export const getDocument = dataToSubmit => {
 
 export const getDocumentLog = dataToSubmit => {
   const request = axios
-    .post("/getDocumentLog", dataToSubmit)
+    .post("/document/get-document-log", dataToSubmit)
     .then(res => res.data)
     .catch(err => alert(err.message));
   return { type: GET_DOCUMENT_LOG, payload: request };
@@ -24,7 +24,7 @@ export const getDocumentLog = dataToSubmit => {
 
 export const insertDocument = dataToSubmit => {
   const request = axios
-    .post("/insertDocument", dataToSubmit)
+    .post("/document/insert-document", dataToSubmit)
     .then(res => res.data)
     .catch(err => alert(err.message));
   return { type: INSERT_DOCUMENT, payload: request };

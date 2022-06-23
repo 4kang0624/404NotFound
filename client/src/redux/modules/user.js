@@ -96,24 +96,22 @@ export const getUserContent = dataToSubmit => {
 // reducer
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
-    case LOGIN: {
-      console.log(action.payload);
+    case LOGIN:
       return { ...state, loginSucess: action.payload?.result };
-    }
     case AUTHORIZATION:
-      return state;
+      return { ...state, userId: action.payload?.userId };
     case REGISTER:
-      return { ...state, registerSuccss: action.payload.result };
+      return { ...state, registerSuccss: action.payload?.result };
     case CHECK_EMAIL:
       return { ...state, checkEmailSuccss: action.payload };
     case GET_USER_DATA:
       return { ...state, userData: action.payload };
     case UPDATE_USER_DATA:
-      return { ...state, updateUserSuccess: action.payload.result };
+      return { ...state, updateUserSuccess: action.payload?.result };
     case DELETE_USER:
-      return { ...state, deleteUserSuccess: action.payload.result };
+      return { ...state, deleteUserSuccess: action.payload?.result };
     case MODIFY_USER_CONTENT:
-      return { ...state, modifyUserContentSuccess: action.payload.result };
+      return { ...state, modifyUserContentSuccess: action.payload?.result };
     case GET_USER_CONTENT:
       return {
         ...state,

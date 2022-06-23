@@ -1,8 +1,13 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import { Box, Grid, TextField } from "@mui/material";
+import React, { useState } from "react";
 import Markdown from "../components/Markdown";
 
 function EditDocument() {
+  const [title, setTitle] = useState("");
+  const changeTitle = e => {
+    setTitle(e.target.value?.trim());
+  };
+
   return (
     <Box
       paddingTop={"50px"}
@@ -11,13 +16,17 @@ function EditDocument() {
       alignItems={"center"}
     >
       <Grid container>
-        <Grid item xs={8}>
-          <Typography variant="h4" component="h4" pb={"1rem"}>
-            주제(새 문서 작성)
-          </Typography>
+        <Grid item xs={8} marginBottom="1rem">
+          <TextField
+            label="Title"
+            id="standard-size-normal"
+            variant="standard"
+            value={title}
+            onChange={changeTitle}
+          />
         </Grid>
       </Grid>
-      <Markdown />
+      <Markdown title={title} />
     </Box>
   );
 }
