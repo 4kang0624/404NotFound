@@ -19,9 +19,14 @@ import MEDitor from '@uiw/react-md-editor';
 function Markdown() {
   const [value, setValue] = useState(mkdStr);
   return (
-    <Box component={"form"} sx={{width: "100%"}}>
+    <Box component={"form"} sx={{ width: "100%" }}>
       <MDEditor height={600} value={value} onChange={setValue} />
-      <Grid container display={"flex"} justifyContent={"end"} marginTop={"1rem"}>
+      <Grid
+        container
+        display={"flex"}
+        justifyContent={"end"}
+        marginTop={"1rem"}
+      >
         <Grid item>
           <Button variant="contained">저장</Button>
         </Grid>
