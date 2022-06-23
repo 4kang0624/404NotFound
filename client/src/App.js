@@ -12,6 +12,7 @@ import EditDocument from "./pages/EditDocument";
 import auth from "./hoc/auth";
 import Discussion from "./pages/Discussion";
 import Footer from "./components/Footer";
+
 function App() {
   return (
     <BrowserRouter>

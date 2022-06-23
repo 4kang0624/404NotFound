@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
   const navigate = useNavigate();
   const titleRef = useRef(null);
+  const authSuccess = useSelector(state => state.user?.authSuccess);
 
   useEffect(() => {
     if (titleRef.current) {
@@ -14,6 +16,11 @@ function Header() {
 
   const goHome = () => {
     navigate("/");
+  };
+
+  const logout = () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    return alert("로그아웃되었습니다.");
   };
 
   return (
@@ -39,7 +46,13 @@ function Header() {
           </Typography>
         </Grid>
         <Grid item xs={0.8} sx={{ "&>a": { color: "white" } }}>
-          <Link to="/signin">로그인</Link>
+          {authSuccess === "success" ? (
+            <span style={{ cursor: "pointer" }} onClick={logout}>
+              로그아웃
+            </span>
+          ) : (
+            <Link to="/signin">로그인</Link>
+          )}
         </Grid>
         <Grid item xs={0.8} sx={{ "&>a": { color: "white" } }}>
           <Link to="/discussion">토론</Link>

@@ -8,23 +8,6 @@ import {
 import { Link } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
 import { Box } from "@mui/system";
-const itemData = [
-  {
-    title: "Python",
-    version: 2,
-    src: "/signin",
-  },
-  {
-    title: "ComputerArchitecture",
-    version: 1,
-    src: "/signin",
-  },
-  {
-    title: "JavaScript",
-    version: 1,
-    src: "/signin",
-  },
-];
 
 function SearchResult({ documents }) {
   return (
