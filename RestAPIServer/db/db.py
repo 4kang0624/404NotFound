@@ -4,6 +4,7 @@ from db.user import registerDAO as regDao
 from db.user import loginDAO as loginDao
 from db.user import myPageDAO as mpDao
 from db.user import userOtherDAO as othDao
+from db.discussion import discussionDAO as disDao
 import jwt
 
 
@@ -187,3 +188,51 @@ def getUserContent(userIdData):
     else:
         userContent = othDao.getUserContent(db, userIdData['userId'])
         return {'result': 'success', 'userContent': userContent}
+
+
+# 토론 발제
+def addDiscussion(discussionData):
+    examData = {"title": "", "topic": "", "userId": "", "content": ""}
+    db = connDao.getDb('discussion')
+    if discussionData.keys() != examData.keys():
+        return {'result': 'fail'}
+    else:
+        disDao.addDiscussion(db, discussionData)
+        return {'result': 'success'}
+
+
+# 토론 목록 조회
+def getDiscussionList(discussionData):
+    db = connDao.getDb('discussion')
+    discussionList = disDao.getDiscussionByTitle(db, discussionData['title'])
+    result = []
+    for discussion in discussionList:
+        del discussion['_id']
+        result.append(discussion)
+    if len(result) == 0:
+        return {'result': 'success', 'discussionList': []}
+    else:
+        return {'result': 'success', 'discussionList': result}
+
+
+# 토론 상세 조회
+def getDiscussionDetail(discussionIdData):
+    db = connDao.getDb('discussion')
+    discussionDetail = disDao.getDiscussionDetail(db, discussionIdData['discussionId'])
+    del discussionDetail['_id']
+    result = {'result': 'success'}
+    result.update(discussionDetail)
+    return result
+
+
+# 토론 의견 추가
+def addDiscussionComment(discussionCommentData):
+    examData = {"discussionId": 0, "contents": "", "userId": ""}
+    db = connDao.getDb('discussion')
+    if discussionCommentData.keys() != examData.keys() or disDao.getLastestDiscussionNumber(db) < discussionCommentData['discussionId']:
+        return {'result': 'fail'}
+    else:
+        disId = discussionCommentData['discussionId']
+        del discussionCommentData['discussionId']
+        disDao.addComment(db, disId, discussionCommentData)
+        return {'result': 'success'}

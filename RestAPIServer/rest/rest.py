@@ -123,5 +123,37 @@ def post_getUserContent():
     return jsonify(result)
 
 
+# 토론 발제
+@app.route('/addDiscussion', methods=['POST'])
+def post_addDiscussion():
+    param = request.get_json()
+    result = db.addDiscussion(param)
+    return jsonify(result)
+
+
+# 토론 목록 조회
+@app.route('/getDiscussionList', methods=['POST'])
+def post_getDiscussionList():
+    param = request.get_json()
+    result = db.getDiscussionList(param)
+    return jsonify(result)
+
+
+# 토론 세부사항 조회
+@app.route('/getDiscussionDetail', methods=['POST'])
+def post_getDiscussionDetail():
+    param = request.get_json()
+    result = db.getDiscussionDetail(param)
+    return jsonify(result)
+
+
+# 토론 의견 추가
+@app.route('/addDiscussionComment', methods=['POST'])
+def post_addDiscussionComment():
+    param = request.get_json()
+    result = db.addDiscussionComment(param)
+    return jsonify(result)
+
+
 if __name__ == "__main__":
     app.run()
