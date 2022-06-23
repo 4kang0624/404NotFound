@@ -3,7 +3,7 @@ content-type: application/json
 
 {
   "title": "Hello World",
-  "content": "This is a test asasdfdfaasdfsdfasdf!!asdfadfsasdf",
+  "content": "This is a test asasdfdfaasdfsdfasdf!!asdfadfsasdfasdf",
   "user": "4kang0624"
 }
 
@@ -17,7 +17,7 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/getDocumentLog
+POST http://localhost:5000/document/get-document-log
 content-type: application/json
 
 {
@@ -118,7 +118,7 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/getDiscussionList
+POST http://192.168.0.2:5000/discussion/get-discussion-list
 content-type: application/json
 
 {
