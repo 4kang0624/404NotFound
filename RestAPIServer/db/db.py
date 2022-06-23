@@ -2,7 +2,8 @@ from db.connection import dbConnectionDAO as connDao
 from db.document import accessDocumentDAO as docDao
 from db.user import registerDAO as regDao
 from db.user import loginDAO as loginDao
-from db.user import myPageDao as mpDao
+from db.user import myPageDAO as mpDao
+from db.user import userOtherDAO as othDao
 import jwt
 
 
@@ -167,3 +168,22 @@ def deleteUser(userData):
         userId = userData['userId']
         mpDao.deleteUser(db, userId)
         return {'result': 'success'}
+
+
+# 사용자 문서 수정
+def modifyUserContent(userData):
+    db = connDao.getDb('user')
+    if regDao.checkUserId(db, userData['userId']):
+        return {'result': 'fail'}
+    othDao.modifyUserContent(db, userData['userId'], userData['userContent'])
+    return {'result': 'success'}
+
+
+# 사용자 문서 조회
+def getUserContent(userIdData):
+    db = connDao.getDb('user')
+    if regDao.checkUserId(db, userIdData['userId']):
+        return {'result': 'fail'}
+    else:
+        userContent = othDao.getUserContent(db, userIdData['userId'])
+        return {'result': 'success', 'userContent': userContent}

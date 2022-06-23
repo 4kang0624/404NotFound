@@ -1,0 +1,98 @@
+POST http://localhost:5000/insertDocument
+content-type: application/json
+
+{
+  "title": "Hello World",
+  "content": "This is a test asasdfdfaasdfsdfasdf!!asdfadfs",
+  "user": "4kang0624"
+}
+
+###
+POST http://localhost:5000/getDocument
+content-type: application/json
+
+{
+  "title": "Hello World",
+  "version": 3
+}
+
+###
+POST http://localhost:5000/getDocumentLog
+content-type: application/json
+
+{
+  "title": "Hello World"
+}
+###
+POST http://localhost:5000/login
+content-type: application/json
+
+{
+  "userId": "kang0624",
+  "password": "123456"
+}
+
+###
+POST http://localhost:5000/autoLogin
+content-type: application/json
+
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJrYW5nMDYyNCIsInBhc3N3b3JkIjoiMTIzNDU2IiwiZW1haWwiOiI0a2FuZzA2MjRAbmF2ZXIuY29tIiwibG9naW5Ub2tlbiI6IjIwMjItMDYtMjIgMjM6NTA6MDEuNzc4MDAwIiwidXNlckNvbnRlbnQiOiIiLCJuYW1lIjoiIiwicGhvbmVOdW1iZXIiOiIiLCJhY2hpZXZlIjpbXX0._yfqc3luOuYzEiQ4UhMMz6Rcs6o0lennrrw8-zy7Jy0"
+}
+
+###
+POST http://localhost:5000/register
+content-type: application/json
+
+{
+    "userId": "4kang0624",
+    "password": "123456",
+    "email": "4kang0624@naver.com"
+}
+
+
+###
+POST http://localhost:5000/getUserData
+content-type: application/json
+
+{
+  "userId": "kang0624"
+}
+
+###
+POST http://localhost:5000/updateUserData
+content-type: application/json
+
+{
+  "userId": "kang0624",
+  "name": "kang0624",
+  "email": "4kang0624@naver.com",
+  "phoneNumber": "010-1234-5678",
+  "password": "12345678asdf"
+
+}
+
+###
+POST http://localhost:5000/deleteUser
+content-type: application/json
+
+{
+  "userId": "kang0624"
+}
+
+###
+POST http://localhost:5000/modifyUserContent
+content-type: application/json
+
+{
+  "userId": "kang0624",
+  "userContent": "awsefwewefwefwfawesdfwfewaafwsefaf"
+}
+
+###
+POST http://localhost:5000/getUserContent
+content-type: application/json
+
+{
+  "userId": "kang0624"
+}

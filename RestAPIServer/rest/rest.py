@@ -99,10 +99,27 @@ def post_updateUserData():
     return jsonify(result)
 
 
+# 회원탈퇴
 @app.route('/deleteUser', methods=['POST'])
 def post_deleteUser():
     param = request.get_json()
     result = db.deleteUser(param)
+    return jsonify(result)
+
+
+# 사용자 문서 수정
+@app.route('/modifyUserContent', methods=['POST'])
+def post_modifyUserContent():
+    param = request.get_json()
+    result = db.modifyUserContent(param)
+    return jsonify(result)
+
+
+# 사용자 문서 조회
+@app.route('/getUserContent', methods=['POST'])
+def post_getUserContent():
+    param = request.get_json()
+    result = db.getUserContent(param)
     return jsonify(result)
 
 
