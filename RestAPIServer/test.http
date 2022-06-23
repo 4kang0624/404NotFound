@@ -1,23 +1,23 @@
-POST http://localhost:5000/insertDocument
+POST http://localhost:5000/document/insert-document
 content-type: application/json
 
 {
   "title": "Hello World",
-  "content": "This is a test asasdfdfaasdfsdfasdf!!asdfadfs",
+  "content": "This is a test asasdfdfaasdfsdfasdf!!asdfadfsasdfasdf",
   "user": "4kang0624"
 }
 
 ###
-POST http://localhost:5000/getDocument
+POST http://localhost:5000/document/get-document
 content-type: application/json
 
 {
   "title": "Hello World",
-  "version": 3
+  "version": 1
 }
 
 ###
-POST http://localhost:5000/getDocumentLog
+POST http://localhost:5000/document/get-document-log
 content-type: application/json
 
 {
@@ -41,13 +41,13 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/register
+POST http://localhost:5000/user/register
 content-type: application/json
 
 {
-    "userId": "4kang0624",
-    "password": "123456",
-    "email": "4kang0624@naver.com"
+    "userId": "4kang06243",
+    "password": "123456asdf",
+    "email": "4kang0624234@naver.com"
 }
 
 
@@ -98,7 +98,7 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/checkEmail
+POST http://localhost:5000/user/check-email
 content-type: application/json
 
 {
@@ -118,7 +118,7 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/getDiscussionList
+POST http://192.168.0.2:5000/discussion/get-discussion-list
 content-type: application/json
 
 {
@@ -126,11 +126,11 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:5000/getDiscussionDetail
+POST http://localhost:5000/discussion/get-discussion-detail
 content-type: application/json
 
 {
-    "discussionId": 6
+    "discussionId": 5
 }
 
 ###
