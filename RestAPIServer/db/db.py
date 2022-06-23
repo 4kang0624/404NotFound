@@ -109,23 +109,19 @@ def login(loginData):
 
 
 # 자동 로그인 처리
-def autoLogin(tokenData):
-    examData = {"token": ""}
-    if tokenData.keys() != examData.keys():
-        return {'result': 'fail'}
-    else:
-        try:
-            db = connDao.getDb('user')
-            userData = jwt.decode(tokenData['token'], 'secret', algorithms=['HS256'])
-            if loginDao.checkLoginToken(db, userData):
-                return {
-                    'result': 'success',
-                    'userId': userData['userId']
-                }
-            else:
-                return {'result': 'fail'}
-        except jwt.exceptions.DecodeError:
+def autoLogin(tokenCookie):
+    try:
+        db = connDao.getDb('user')
+        userData = jwt.decode(tokenCookie, 'secret', algorithms=['HS256'])
+        if loginDao.checkLoginToken(db, userData):
+            return {
+                'result': 'success',
+                'userId': userData['userId']
+            }
+        else:
             return {'result': 'fail'}
+    except jwt.exceptions.DecodeError:
+        return {'result': 'fail'}
 
 
 # 마이페이지 정보 확인

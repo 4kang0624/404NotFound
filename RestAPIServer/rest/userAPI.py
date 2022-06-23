@@ -39,10 +39,10 @@ def post_login():
 
 
 # 자동 로그인
-@userApi.route('/auto-login', methods=['POST'])
+@userApi.route('/auto-login')
 def post_autoLogin():
-    param = request.get_json()
-    result = db.autoLogin(param)
+    tokenCookie = request.cookies.get('token')
+    result = db.autoLogin(tokenCookie)
     return jsonify(result)
 
 
