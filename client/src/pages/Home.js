@@ -1,18 +1,39 @@
-import {
-  InputBase,
-  Typography,
-  Paper,
-  IconButton,
-  Chip,
-  Grid,
-} from "@mui/material";
+import { InputBase, Typography, Paper, IconButton } from "@mui/material";
+
 import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import SearchResult from "../components/SearchResult";
+import { getDocument, matchTitleList } from "../redux/modules/document";
+import { useDispatch } from "react-redux";
 
 function Home() {
-  const [isCard, setIsCard] = useState(false);
+  const [search, setSearch] = useState("");
+  const [documents, setDocuments] = useState([]);
+  const [matchTitle, setMatchTitle] = useState([]);
+  const dispatch = useDispatch();
+
+  const changeInput = e => {
+    const obj = {
+      title: e.target.value.trim(),
+    };
+    dispatch(matchTitleList(obj)).then(res => {
+      console.log(obj.title);
+      if (obj.title === "") {
+        return setMatchTitle([]);
+      }
+      setMatchTitle(res.payload?.matchData);
+    });
+
+    dispatch(getDocument(obj)).then(res => {
+      if (res.payload?.result === "fail") {
+        return setDocuments([]);
+      }
+      setDocuments([res.payload]);
+    });
+    setSearch(e.target.value.trim());
+  };
+
   return (
     <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
       <Typography
@@ -25,6 +46,7 @@ function Home() {
         코드위키
       </Typography>
       <Paper
+        variant="outlined"
         component="form"
         sx={{
           p: "2px 4px",
@@ -32,50 +54,27 @@ function Home() {
           alignItems: "center",
           width: 400,
           height: 40,
-          borderRadius: "20px",
-          bgcolor: "black",
+          border: "1px solid gray",
+          outline: "1px solid #0D90B2",
+          bgcolor: "white",
+          boxShadow: 0,
         }}
       >
         <InputBase
-          sx={{ ml: 1, flex: 1, color: "white" }}
-          // placeholder="Search Google Maps"
+          sx={{ ml: 2, flex: 1, color: "black" }}
           inputProps={{ "aria-label": "search document" }}
+          value={search}
+          onChange={changeInput}
         />
         <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-          <SearchIcon sx={{ color: "white" }} />
+          <SearchIcon sx={{ color: "black" }} />
         </IconButton>
       </Paper>
-      <Grid container sx={{ maxWidth: "900px", marginTop: "30px" }}>
-        <Grid item xs={3} textAlign={"center"}>
-          <Chip
-            label="학생"
-            variant="outlined"
-            onClick={() => console.log("dd")}
-          />
-        </Grid>
-        <Grid item xs={3} textAlign={"center"}>
-          <Chip
-            label="주니어개발자"
-            variant="outlined"
-            onClick={() => console.log("dd")}
-          />
-        </Grid>
-        <Grid item xs={3} textAlign={"center"}>
-          <Chip
-            label="시니어개발자"
-            variant="outlined"
-            onClick={() => console.log("dd")}
-          />
-        </Grid>
-        <Grid item xs={3} textAlign={"center"}>
-          <Chip
-            label="전체"
-            variant="outlined"
-            onClick={() => console.log("dd")}
-          />
-        </Grid>
-      </Grid>
-      {isCard && <SearchResult />}
+      {matchTitle.length !== 0 &&
+        matchTitle.map((item, i) => (
+          <React.Fragment key={i}>{matchTitle + " "}</React.Fragment>
+        ))}
+      {documents.length !== 0 && <SearchResult documents={documents} />}
     </Box>
   );
 }

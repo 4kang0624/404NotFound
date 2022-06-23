@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, TextField } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -58,13 +58,28 @@ function SignIn() {
   };
 
   return (
-    <Box marginTop={"200px"} marginX={"20%"}>
-      <Paper sx={{ height: "300px" }}>
+    <Box
+      marginTop={"150px"}
+      display={"flex"}
+      justifyContent={"center"}
+      borderRadius={"2px"}
+    >
+      <Paper sx={{ width: "880px", height: "446px" }}>
         <Grid container>
-          <Grid item xs={4} height={"300px"} bgcolor={"#2C2D36"}>
-            <Box height={"100%"}></Box>
+          <Grid
+            item
+            width={285}
+            height={446}
+            bgcolor={"#0D90B2"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Typography variant="h3" component="h3" color={"white"}>
+              Code<b>Wiki</b>
+            </Typography>
           </Grid>
-          <Grid item xs={8} height={"300px"}>
+          <Grid item width={595} height={446} bgcolor={"#E4E3E3"}>
             <Box sx={{ display: "flex", justifyContent: "end" }}>
               <Button onClick={goSignIn}>로그인</Button>
               <Button onClick={goSignUp}>회원가입</Button>
@@ -76,6 +91,11 @@ function SignIn() {
                 onChange={changeId}
                 placeholder="아이디"
                 variant="outlined"
+                sx={{
+                  width: 372,
+                  height: 52,
+                  marginY: 3,
+                }}
               />
               <TextField
                 id="outlined-basic"
@@ -84,8 +104,15 @@ function SignIn() {
                 type="password"
                 placeholder="비밀번호"
                 variant="outlined"
+                sx={{
+                  width: 372,
+                  height: 52,
+                  marginY: 3,
+                }}
               />
-              <Button type="submit">로그인</Button>
+              <Button variant="contained" type="submit">
+                로그인
+              </Button>
             </Form>
           </Grid>
         </Grid>
@@ -99,5 +126,6 @@ export default SignIn;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 4rem;
 `;

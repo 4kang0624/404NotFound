@@ -1,19 +1,41 @@
 import React from "react";
-import { Card, Grid } from "@mui/material";
+import {
+  IconButton,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import InfoIcon from "@mui/icons-material/Info";
+import { Box } from "@mui/system";
 
-function SearchResult() {
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+function SearchResult({ documents }) {
   return (
-    <Grid container sx={{ marginY: "50px" }}>
-      {array.map((el, i) => (
-        <Grid key={i} item xs={4} sx={{ padding: "1rem", height: "200px" }}>
-          <Card variant="outlined" sx={{ height: "100%" }}>
-            {el}
-          </Card>
-        </Grid>
+    <ImageList
+      sx={{ width: 500, height: 450, marginTop: "45px" }}
+      cols={3}
+      rowHeight={164}
+    >
+      {documents.map((item, i) => (
+        <ImageListItem key={i}>
+          <Box bgcolor={"#42bcf5"} width={"164px"} height={"164px"}></Box>
+          <Link key={i} to={`/document:${item.title}`} state={item}>
+            <ImageListItemBar
+              title={item.title}
+              subtitle={"Ver. " + item.version}
+              actionIcon={
+                <IconButton
+                  sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                  aria-label={`info about ${item.title}`}
+                >
+                  <InfoIcon />
+                </IconButton>
+              }
+            ></ImageListItemBar>
+          </Link>
+        </ImageListItem>
       ))}
-    </Grid>
+    </ImageList>
   );
 }
 

@@ -99,7 +99,11 @@ export default function reducer(state = {}, action = {}) {
     case LOGIN:
       return { ...state, loginSucess: action.payload?.result };
     case AUTHORIZATION:
-      return { ...state, userId: action.payload?.userId };
+      return {
+        ...state,
+        userId: action.payload?.userId,
+        authSuccess: action.payload?.result,
+      };
     case REGISTER:
       return { ...state, registerSuccss: action.payload?.result };
     case CHECK_EMAIL:
