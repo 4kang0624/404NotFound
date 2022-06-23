@@ -21,7 +21,6 @@ class CheckUserId(Resource):
         global discussion
 
 
-
 @User.route('/check-email')
 class CheckEmail(Resource):
     @User.expect(User.model('Check Email', {
@@ -45,10 +44,6 @@ class Register(Resource):
         global count
         global discussion
 
-        idx = count
-        count += 1
-        user[idx] = request.json.get('data')
-
 
 @User.route('/login')
 class Login(Resource):
@@ -62,12 +57,9 @@ class Login(Resource):
         global discussion
 
 
-@User.route('/auto-login')
+@User.route('/auto-login/<token>')
 class AutoLogin(Resource):
-    @User.expect(User.model('Auto Login', {
-        "token": fields.String(required=True, description="토큰")
-    }))
-    def post(self):
+    def get(self):
         """토큰 값을 비교해 자동 로그인 기능을 수행합니다."""
         global count
         global discussion
