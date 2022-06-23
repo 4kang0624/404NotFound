@@ -2,6 +2,13 @@
 Code**WiKi**
 
 SWUniv Joint Hackathon Project
+```asciidoc
++ 개발자 | 김병철 | 배재대학교 | 리더
++ 개발자 | 박상현 | 인제대학교 | 영상제공
++ 개발자 | 박건형 | 삼육대학교 | 자료취합
++ 개발자 | 김지현 | 숙명여자대학교 | 서버관리
++ 디자이너 | 김형섭 | 상명대학교 | 소통
+```
 
 ## Introduction
 > Life is short, You need Code**Wiki**.
