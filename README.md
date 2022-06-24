@@ -37,7 +37,7 @@ SWUniv Joint Hackathon Project
 - 검색창에 검색을 하면 키워드와 관련된 내용이 하단에 나타납니다.
 
 ![image](https://user-images.githubusercontent.com/87464704/175434542-a61f2d0a-7ceb-4f02-bd87-8bfff5686742.png)
-![image](https://user-images.githubusercontent.com/87464704/175434790-6feef5ce-7cf4-4ae5-aa8c-9bb09017d355.png)
+![image](https://user-images.githubusercontent.com/87464704/175436977-390f6b29-a429-4a07-b51c-654bbaaa9833.png)
 
 - 아이디와 패스워드를 입력할 수 있고 만일 없을 경우 계정을 만들 수 있습니다.
 - 계정은 간단한 정보만 입력하면 만들 수 있습니다.
