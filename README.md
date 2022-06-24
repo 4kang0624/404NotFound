@@ -40,7 +40,7 @@ SWUniv Joint Hackathon Project
 ![image](https://user-images.githubusercontent.com/87464704/175435296-c438b971-a88d-4a5a-a497-0d6fc46547dd.png)
 - 그 외에도 다양한 기능들이 제공됩니다.
 
-+ 구현이 아직 안된 기능도 존재합니다.
++ 구현이 아직 안된 기능도 존재합니다!!
 + 
 ## Installation
 * Python Package
