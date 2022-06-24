@@ -30,6 +30,7 @@ SWUniv Joint Hackathon Project
 내용의 완성도를 높혀 산뢰할 수 있는 서비스를 구축하고자 하였습니다.
 
 
+
 ## 코드위키의 이용방법
 ![image](https://user-images.githubusercontent.com/87464704/175434248-99883e87-1ea0-4b5e-9a68-d4c8bdb8040a.png)
 - 코드위키는 상단의 버튼을 눌러 로그인을 할 수 있고 문서 토론을 진행할 수 있습니다.
@@ -52,7 +53,25 @@ SWUniv Joint Hackathon Project
 - 그 외에도 다양한 기능들이 제공됩니다.
 
 + 구현이 아직 안된 기능도 존재합니다!!
-+ 
+
+## 기술스택
+
+# 프론트엔드
+
+- React
+- Redux
+- Styled-Component
+- MUI
+
+
+# 백엔드
+
+- flask
+- pymongo
+- flask_restx
+- PyJWT
+
+
 ## Installation
 * Python Package
 ```console
