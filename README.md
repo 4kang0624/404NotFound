@@ -21,7 +21,11 @@ SWUniv Joint Hackathon Project
 
 ## 코드위키의 이용방법
 ![image](https://user-images.githubusercontent.com/87464704/175434248-99883e87-1ea0-4b5e-9a68-d4c8bdb8040a.png)
+- 코드위키는 상단의 버튼을 눌러 로그인을 할 수 있고 문서 토론을 진행할 수 있습니다.
+- 검색창에 검색을 하면 키워드와 관련된 내용이 하단에 나타납니다.
 
+![image](https://user-images.githubusercontent.com/87464704/175434542-a61f2d0a-7ceb-4f02-bd87-8bfff5686742.png)
+- 아이디와 패스워드를 입력할 수 있고 만일 없을 경우 계정을 만들 수 있습니다.
 
 ## Installation
 * Python Package
