@@ -25,8 +25,23 @@ SWUniv Joint Hackathon Project
 - 검색창에 검색을 하면 키워드와 관련된 내용이 하단에 나타납니다.
 
 ![image](https://user-images.githubusercontent.com/87464704/175434542-a61f2d0a-7ceb-4f02-bd87-8bfff5686742.png)
-- 아이디와 패스워드를 입력할 수 있고 만일 없을 경우 계정을 만들 수 있습니다.
+![image](https://user-images.githubusercontent.com/87464704/175434790-6feef5ce-7cf4-4ae5-aa8c-9bb09017d355.png)
 
+- 아이디와 패스워드를 입력할 수 있고 만일 없을 경우 계정을 만들 수 있습니다.
+- 계정은 간단한 정보만 입력하면 만들 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/87464704/175434966-c7bf13dd-69f4-46b0-affe-4983b6e68f1e.png)
+- 코드위키는 대부분의 개발자가 익숙한 자습서 형태를 따릅니다.
+- 상기 내용은 UI를 위한 것으로 나무위키 내용 중 일부를 발췌했습니다.
+
+![image](https://user-images.githubusercontent.com/87464704/175435228-d4886838-5403-4d04-a3ab-c8d18a9b03cc.png)
+- 내 정보에서는 아이디 비밀번호뿐 아니라 다양한 내용을 카드형식으로 확인 할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/87464704/175435296-c438b971-a88d-4a5a-a497-0d6fc46547dd.png)
+- 그 외에도 다양한 기능들이 제공됩니다.
+
++ 구현이 아직 안된 기능도 존재합니다.
++ 
 ## Installation
 * Python Package
 ```console
