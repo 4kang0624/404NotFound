@@ -4,8 +4,6 @@ import { Box, Typography } from "@mui/material";
 function Footer() {
   return (
     <Box
-      position={"absolute"}
-      bottom={0}
       bgcolor={"#5D5C5D"}
       height={"60px"}
       display={"flex"}
@@ -13,6 +11,7 @@ function Footer() {
       alignItems={"center"}
       color={"white"}
       width={"100%"}
+      marginTop={"550px"}
     >
       <Typography>Copyright © 2022. Codenary All Rights Reserved.</Typography>
     </Box>

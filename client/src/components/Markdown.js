@@ -6,11 +6,12 @@ import { insertDocument } from "../redux/modules/document";
 import useBeforeLeave from "../hooks/useBeforeLeave";
 import { useNavigate } from "react-router-dom";
 
-function Markdown({ title }) {
+function Markdown(props) {
+  const { title, realContent } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = useSelector(state => state.user.userId);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(realContent);
   const beforeFC = () => window.confirm("사이트에 나가시겠습니까?");
   useBeforeLeave(beforeFC);
 

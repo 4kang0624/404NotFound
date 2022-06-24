@@ -1,7 +1,7 @@
 import React from "react";
 
 function DocumentNav() {
-  return <div>DocumentNav</div>;
+  return <div></div>;
 }
 
 export default DocumentNav;

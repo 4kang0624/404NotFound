@@ -164,7 +164,11 @@ function SignUp() {
                   marginY: 1,
                 }}
               />
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{ alignSelf: "end" }}
+              >
                 회원가입
               </Button>
             </Form>
@@ -181,5 +185,11 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem;
+  padding: 4rem 7rem 0 7rem;
+  & > div {
+    background-color: white;
+    & > div {
+      background-color: white;
+    }
+  }
 `;

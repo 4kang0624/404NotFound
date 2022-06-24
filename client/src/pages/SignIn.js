@@ -110,7 +110,11 @@ function SignIn() {
                   marginY: 3,
                 }}
               />
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{ alignSelf: "end" }}
+              >
                 로그인
               </Button>
             </Form>
@@ -127,5 +131,11 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem;
+  padding: 5rem 7rem 0 7rem;
+  & > div {
+    background-color: white;
+    & > div {
+      background-color: white;
+    }
+  }
 `;
