@@ -30,6 +30,9 @@ SWUniv Joint Hackathon Project
 내용의 완성도를 높혀 산뢰할 수 있는 서비스를 구축하고자 하였습니다.
 
 
+## 백엔드/프론트엔드 구현 방식
+![그림2](https://user-images.githubusercontent.com/60893318/175440500-b26fc590-41c6-44fe-84dc-2e59db782160.png)
+
 
 ## 코드위키의 이용방법
 ![image](https://user-images.githubusercontent.com/87464704/175434248-99883e87-1ea0-4b5e-9a68-d4c8bdb8040a.png)
