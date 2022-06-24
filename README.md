@@ -41,8 +41,8 @@ SWUniv Joint Hackathon Project
 
 - 아이디와 패스워드를 입력할 수 있고 만일 없을 경우 계정을 만들 수 있습니다.
 - 계정은 간단한 정보만 입력하면 만들 수 있습니다.
-
-![image](https://user-images.githubusercontent.com/87464704/175434966-c7bf13dd-69f4-46b0-affe-4983b6e68f1e.png)
+- 
+![image](https://user-images.githubusercontent.com/87464704/175437024-e9cf9db4-eb39-48a7-93df-975ba1c3094f.png)
 - 코드위키는 대부분의 개발자가 익숙한 자습서 형태를 따릅니다.
 - 상기 내용은 UI를 위한 것으로 나무위키 내용 중 일부를 발췌했습니다.
 
