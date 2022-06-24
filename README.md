@@ -72,6 +72,7 @@ SWUniv Joint Hackathon Project
 - PyJWT
 
 
+
 ## Installation
 * Python Package
 ```console
@@ -82,6 +83,9 @@ SWUniv Joint Hackathon Project
 ```
 * React Package
 
+## Swagger
+
+- http://118.67.143.162:5000/
 
 ## Database Structure (MongoDB)
 * Document
